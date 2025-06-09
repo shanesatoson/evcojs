@@ -1,0 +1,40 @@
+{
+  "name": "evcojs",
+  "version": "1.0.1",
+  "description": "CQRS with CloudEvents. Segregate read and write code and use cloud events to exchange data between them.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "watch": "tsx watch index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shanesatoson/evcojs.git"
+  },
+  "keywords": [
+    "CQRS",
+    "Command",
+    "CommandHandler",
+    "Events",
+    "CloudEvents",
+    "EventSourcing",
+    "EventStore",
+    "EventBus",
+    "EventBroker",
+    "EventDispatcher"
+  ],
+  "author": "Shane Satoson",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@types/node": "^22.15.30",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {}
+}
