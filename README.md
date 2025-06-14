@@ -1,5 +1,7 @@
 # evcojs
 
+The name evcojs is a combination of the words "event", "command" and "javascript". It is a library that helps to create applications with a clear separation of concerns between handling commands and handling events. This makes it easier to understand and maintain the codebase.
+
 `evcojs` is a lightweight, dependency-free library for implementing CQRS (Command Query Responsibility Segregation) and Event Sourcing patterns in TypeScript and JavaScript. It helps to cleanly encapsulate business logic, improve scalability, and maintain a complete audit trail of all state changes.
 
 evcojs is a library that automates the orchestration of event handlers, command handlers, and state rebuilders using the CloudEvents standard. It leverages a CQRS (Command Query Responsibility Segregation) pattern to segregate the read and write operations, allowing for a more scalable and maintainable architecture.
