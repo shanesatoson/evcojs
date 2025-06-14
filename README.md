@@ -14,7 +14,7 @@ This approach facilitates a clean separation of concerns, improves scalability, 
 
 # CloudEvents
 
-evcojs is compatible with the offictial https://cloudevents.io/ standard.
+evcojs is compatible with the offictial CNCF https://cloudevents.io/ standard.
 
 ## 1\. Installation
 
@@ -31,7 +31,7 @@ To use `evcojs` effectively, it's important to understand the following patterns
 - **CQRS (Command Query Responsibility Segregation):** This pattern separates operations that write data (Commands) from operations that read data (Queries). `evcojs` implements this by using `handleCommand` for write operations and `createState` for read operations.
 - **Event Sourcing:** Instead of storing the current state of an entity, you store the entire sequence of events that led to that state. The state is reconstructed on demand by replaying these events. This provides a robust audit trail and enables powerful analytical capabilities.
 - **Command:** A command is an intent to change the state of the system (e.g., `CatalogBookCommand`). Command handlers validate the command and, if successful, generate one or more events.
-- **Event:** An event is an immutable fact that happened in the past (e.g., `BookCatalogedEvent`). Events are used to change the state and to trigger actions in response to state changes (e.g., saving to a database). `evcojs` uses the [CloudEvents](https://cloudevents.io/) format for a standardized structure.
+- **Event:** An event is an immutable fact that happened in the past (e.g., `BookCatalogedEvent`). Events are used to change the state and to trigger actions in response to state changes (e.g., saving to a database). `evcojs` uses the [CNCF CloudEvents](https://cloudevents.io/) format for a standardized structure.
 - **State:** The state is the result of applying all past events to an initial state. It is calculated at runtime to validate business rules in command handlers.
 - **Projection:** A projection is a read-optimized representation of the data. It is created by subscribing to events and is stored in a separate database or table to enable fast queries.
 
