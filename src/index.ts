@@ -17,12 +17,70 @@ export interface Command<C> {
  * Represents a standard CloudEvent.
  */
 export interface CloudEvent<T> {
-  source?: string;
-  subject: string;
-  type: string;
+  // Required Attributes
+  /**
+   * Identifies the event. Producers MUST ensure that source + id is unique for each distinct event.
+   * If a duplicate event is re-sent (e.g. due to a network error), it MAY have the same id and source.
+   * REQUIRED
+   */
   id?: string;
-  timestamp?: Date;
-  data: T;
+
+  /**
+   * Identifies the context in which an event happened. Often this will be a URL,
+   * but the definition of 'url' for a given source is application-defined.
+   * REQUIRED
+   */
+  source?: string;
+
+  /**
+   * The type of event. This is a URI that MAY be an absolute URI or a relative URI.
+   * It is RECOMMENDED that this attribute be used in conjunction with the `source` attribute
+   * to provide a globally unique identifier for the event.
+   * REQUIRED
+   */
+  type: string;
+
+  /**
+   * The version of the CloudEvents specification that the event uses. This enables
+   * the event format to evolve over time without breaking consumers.
+   * REQUIRED
+   */
+  specversion?: "1.0"; // As of CloudEvents v1.0, this is the only supported value.
+
+  // Optional Attributes
+  /**
+   * Content type of the `data` attribute value. This attribute enables the data
+   * to be interpreted correctly.
+   */
+  datacontenttype?: string;
+
+  /**
+   * Identifies the schema that data adheres to.
+   * Incompatible changes to the schema SHOULD be reflected by a change to the type URI.
+   */
+  dataschema?: string;
+
+  /**
+   * This describes the subject of the event in the context of the event producer.
+   * In publish-subscribe scenarios, subscribers can use the subject to filter events.
+   */
+  subject?: string;
+
+  /**
+   * Timestamp of when the event happened.
+   * If not present, the consumer MAY assume the time it received the event.
+   */
+  time?: string; // Typically an ISO 8601 string (e.g., "2023-10-27T10:00:00Z")
+
+  // Data attribute
+  /**
+   * The event payload. This is the application-specific data.
+   * The type parameter `T` allows for strong typing of the data.
+   */
+  data?: T;
+
+  // Extension Attributes (optional, can be any additional key-value pairs)
+  [key: string]: unknown;
 }
 
 /**
@@ -239,7 +297,8 @@ export async function handleCommand<C>(command: Command<C>) {
         subject: event.subject,
         type: event.type,
         id: event.id ?? randomUUID(),
-        timestamp: event.timestamp ?? new Date(),
+        time: event.time ?? new Date().toISOString(),
+        specversion: "1.0",
         data: event.data,
       };
     });

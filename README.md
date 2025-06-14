@@ -306,6 +306,7 @@ async function getInventoryState(isbn: string) {
 - `registerStateRebuilder(type: string, context: string, rebuilder: Function)`: Registers a function that updates the state based on an event type within the given context.
 - `registerEventhandler(type: string, handler: Function)`: Registers a handler that is executed in response to an event type (e.g., for saving). This handler is context-agnostic.
 - `registerStateLoadingFunction(context: string, loader: Function)`: Registers the function that loads historical events for a specific context.
+- `registerUpcaster(type: string, context: string, upcaster: Function)`: Registers a handler that upcasts events of the given type in the given context to the latest version before they are processed. The upcaster is called with the event and must return the upcasted event.
 
 ### Execution Functions
 
