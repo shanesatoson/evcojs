@@ -200,7 +200,11 @@ setSource("https://library.evcojs.org");
 
 If not defined, all events gets a default source.
 
-Events and the corresponding logic changes over time and old events must be proccessed by new logic. Therefor it is possible to upcast old events and keep only the new staterebuilder logic:
+#### Upcaster
+
+An **Upcaster** in Event Sourcing is a crucial component that transforms old event schemas into their current versions when events are read from the event store. This ensures backward compatibility, allowing your application to process historical data even as its data structures evolve. Upcasters prevent the need to alter immutable events in the event store, maintaining the integrity of your event log. They essentially bridge the gap between past and present event definitions, enabling seamless system evolution.
+
+Upcaster are called after stateLoading and before state rebuilding.
 
 ```typescript
 function upcastCatalogedBook(
