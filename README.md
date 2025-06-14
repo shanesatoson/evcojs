@@ -190,7 +190,7 @@ export function registerInventoryDomain() {
 
 CloudEvents are based on the standard from: https://cloudevents.io/.
 
-The fields "subject", "type" and "data" are mandatory, and "source", "id" and "timestamp" are optional and will be filled automatically.
+The fields "subject", "type" and "data" are mandatory, and "source", "id" and "time" are optional and will be filled automatically.
 
 **"source"** can be defined globally by:
 
@@ -198,7 +198,7 @@ The fields "subject", "type" and "data" are mandatory, and "source", "id" and "t
 setSource("https://library.evcojs.org");
 ```
 
-if not defined, all events gets a default source.
+If not defined, all events gets a default source.
 
 Events and the corresponding logic changes over time and old events must be proccessed by new logic. Therefor it is possible to upcast old events and keep only the new staterebuilder logic:
 
