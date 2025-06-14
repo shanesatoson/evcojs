@@ -17,7 +17,6 @@ export interface Command<C> {
  * Represents a standard CloudEvent.
  */
 export interface CloudEvent<T> {
-  // Required Attributes
   /**
    * Identifies the event. Producers MUST ensure that source + id is unique for each distinct event.
    * If a duplicate event is re-sent (e.g. due to a network error), it MAY have the same id and source.
@@ -64,7 +63,7 @@ export interface CloudEvent<T> {
    * This describes the subject of the event in the context of the event producer.
    * In publish-subscribe scenarios, subscribers can use the subject to filter events.
    */
-  subject?: string;
+  subject: string;
 
   /**
    * Timestamp of when the event happened.
@@ -293,9 +292,8 @@ export async function handleCommand<C>(command: Command<C>) {
     }
     const cloudEvents: CloudEvent<any>[] = newEvents.map((event) => {
       return {
+        ...event,
         source: event.source ?? source,
-        subject: event.subject,
-        type: event.type,
         id: event.id ?? randomUUID(),
         time: event.time ?? new Date().toISOString(),
         specversion: "1.0",
