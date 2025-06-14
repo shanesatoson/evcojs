@@ -61,6 +61,7 @@ interface EventHandler {
 interface UpCasthandler {
   upcast: (event: CloudEvent<any>) => CloudEvent<any>;
   type: string;
+  context: string;
 }
 
 /**
@@ -93,13 +94,19 @@ export function setSource(src: string) {
  * The new event will be used instead of the original event.
  *
  * @param {string} type - The type of the event.
+ * @param {string} context - The context of the event.
  * @param {function(CloudEvent<any>): CloudEvent<any>} func - The upcaster function.
  */
 export function registerUpcaster(
   type: string,
+  context: string,
   func: (event: CloudEvent<any>) => CloudEvent<any>
 ) {
-  upcastHandler.set(type, { type, upcast: func });
+  const key = createKey(context, type);
+  if (upcastHandler.has(key)) {
+    throw new Error(`upcaster for ${key} already exists`);
+  }
+  upcastHandler.set(key, { type, context, upcast: func });
 }
 
 /**
