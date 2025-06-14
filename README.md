@@ -196,7 +196,7 @@ setSource("https://library.evcojs.org");
 
 if not defined, all events gets a default source.
 
-Events and the corresponding logic changes over time and old events must be proccessed by new logic. Therefor ist is possible to upcast old events and keep only the new staterebuilder logic:
+Events and the corresponding logic changes over time and old events must be proccessed by new logic. Therefor it is possible to upcast old events and keep only the new staterebuilder logic:
 
 ```typescript
 function upcastCatalogedBook(
