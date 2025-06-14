@@ -274,12 +274,13 @@ import { INVENTORY_CONTEXT } from "../domain-modules/book-inventory/book-invento
 // Execute a command
 async function borrowBookController(isbn: string) {
   try {
-    await handleCommand({
+    const state = await handleCommand({
       type: "command.book-inventory.borrow.copy",
       subjects: ["/book/" + isbn], // Load events for this subject
       data: { isbn: isbn },
     });
     console.log("Book borrowed successfully!");
+    console.log("here you can do anything with the current state", state);
   } catch (e) {
     console.error(e);
   }
