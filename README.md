@@ -40,7 +40,7 @@ To use `evcojs` effectively, it's important to understand the following patterns
 An `evcojs` application does not enforce a specific structure, but you should ensures that domain modules are encapsulated and domain handlers do not directly use infrastructure code, such as database read/write operations.
 A typical `evcojs` application is organized into domain modules that cleanly separate business logic.
 
-See here a full working example: https://github.com/shanesatoson/evcojs-examples
+See here a full working example: [evcojs examples](https://github.com/shanesatoson/evcojs-examples)
 
 ```
 
