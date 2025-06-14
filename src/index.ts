@@ -250,7 +250,9 @@ export async function handleCommand<C>(command: Command<C>) {
           .forEach((eh) => eh.eventHandler(cloudEvent, state));
       }
     }
+    return state;
   }
+  return null;
 }
 /**
  * Reconstructs the state for a given context and subjects by loading and processing historical events.
