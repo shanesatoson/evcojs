@@ -12,7 +12,7 @@ By using CloudEvents as the standard for event data exchange, evcojs ensures int
 
 This approach facilitates a clean separation of concerns, improves scalability, and enhances the ability to evolve the system architecture over time.
 
-# CloudEvents
+### CloudEvents
 
 evcojs is compatible with the offictial CNCF https://cloudevents.io/ standard.
 
