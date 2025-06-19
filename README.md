@@ -14,7 +14,7 @@ This approach facilitates a clean separation of concerns, improves scalability, 
 
 ### CloudEvents
 
-evcojs is compatible with the offictial CNCF https://cloudevents.io/ standard.
+evcojs is compatible with the official CNCF https://cloudevents.io/ standard.
 
 ## 1\. Installation
 

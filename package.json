@@ -1,6 +1,6 @@
 {
   "name": "evcojs",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "CQRS with CloudEvents. Segregate read and write code and use cloud events to exchange data between them.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

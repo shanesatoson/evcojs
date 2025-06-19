@@ -326,7 +326,10 @@ export async function handleCommand<C>(command: Command<C>) {
  * the current state. If no state loading function is found, an empty state is returned.
  */
 
-export async function createState<C>(context: string, subjects: string[]) {
+export async function createState<C>(
+  context: string,
+  subjects: string[]
+): Promise<C | null> {
   const stateLoadingFunction = stateLoader.get(context);
   let events = stateLoadingFunction
     ? await stateLoadingFunction.load(subjects)
@@ -352,7 +355,7 @@ export async function createState<C>(context: string, subjects: string[]) {
  * If no state rebuilder is registered for the given event type and context, the
  * event is ignored and the state is returned unchanged.
  */
-function executeEvent(context: string, event: CloudEvent<any>, state: null) {
+function executeEvent(context: string, event: CloudEvent<any>, state?: any) {
   const rebuilder = stateRebuilder.get(createKey(context, event.type));
   if (rebuilder && rebuilder.context === context) {
     state = rebuilder.stateRebuilder(event.data, state);
